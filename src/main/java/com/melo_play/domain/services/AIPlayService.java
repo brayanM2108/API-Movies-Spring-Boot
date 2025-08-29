@@ -1,4 +1,4 @@
-package com.melo_play;
+package com.melo_play.domain.services;
 
 import dev.langchain4j.service.UserMessage;
 import dev.langchain4j.service.spring.AiService;
