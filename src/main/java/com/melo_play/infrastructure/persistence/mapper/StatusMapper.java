@@ -6,19 +6,19 @@ import org.mapstruct.Named;
 public class StatusMapper {
 
     @Named( "statusToString")
-    public String statusToString(Status status) {
+    public static String statusToString(Status status) {
         if (status == null) return null;
 
         return switch (status) {
-            case ACTIVE -> "Activo";
-            case INACTIVE -> "Inactivo";
-            case UPCOMING_RELEASE -> "Próximo lanzamiento";
+            case ACTIVE -> "A";
+            case INACTIVE -> "I";
+            case UPCOMING_RELEASE -> "P";
             default -> null;
         };
     }
 
     @Named( "stringToStatus")
-    public Status stringToStatus(String status) {
+    public static Status stringToStatus(String status) {
         if (status == null) return null;
 
         return switch (status){
