@@ -29,6 +29,9 @@ public class MovieRepositoryImpl implements IMovieRepository {
 
     @Override
     public Optional<MovieDto> findById(Long id) {
+        if (crudMovieEntity.findById(id).isEmpty()) {
+            throw new MovieDoesNotExist(id);
+        }
         return crudMovieEntity.findById(id).map(movieMapper::toDto);
     }
 
@@ -37,8 +40,7 @@ public class MovieRepositoryImpl implements IMovieRepository {
 
         if (crudMovieEntity.findByTitle(movieDto.title()) != null) {
             throw new MovieAlreadyExistException(movieDto.title());
-        };
-
+        }
 
         MovieEntity movieEntity = movieMapper.toEntity(movieDto);
         movieEntity.setStatus("A");
@@ -48,7 +50,7 @@ public class MovieRepositoryImpl implements IMovieRepository {
     @Override
     public MovieDto update(Long id, UpdateMovieDto updateMovieDto) {
         MovieEntity movieEntity = crudMovieEntity.findById(id).orElse(null);
-        if (movieEntity == null) return null;
+        if (movieEntity == null) throw new MovieDoesNotExist(id);
 
         movieMapper.updateEntity(updateMovieDto, movieEntity);
         return movieMapper.toDto(crudMovieEntity.save(movieEntity));

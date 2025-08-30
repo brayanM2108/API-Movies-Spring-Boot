@@ -34,8 +34,10 @@ dependencies {
     compileOnly("org.mapstruct:mapstruct:1.6.3")
     annotationProcessor 'org.mapstruct:mapstruct-processor:1.6.3'
 
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
 
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
     // LangChain4j
     implementation 'dev.langchain4j:langchain4j-open-ai-spring-boot-starter:1.0.0-beta1'
@@ -43,6 +45,8 @@ dependencies {
 
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     runtimeOnly 'org.postgresql:postgresql'
+
+    implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.11'
 
 }
 
